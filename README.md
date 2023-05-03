@@ -1,1 +1,1 @@
-# DeluxePvP
+# Kordelas Project
