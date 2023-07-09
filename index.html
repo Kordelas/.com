@@ -1,31 +1,43 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Kordelas Project</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="icon" type="image/png" href="LogoIcon.png"/>
-    </head>
-    <body>
-        <div class="banner">
-            <div class="navbar">
-                <img src="logo.png" class="logo">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="products.html">Products</a></li>
-                    <li><a href="Contact.html">Contact</a></li>
-                    <li><a href="Discord.html">Discord</a></li>
-                </ul>
-            </div>
-            <div class="content">
-                <h1>Welcome To My Project!</h1>
-                <p>Website Created By Kordelas!</p>
-                <div>
-                    <button onclick = "window.location.href='products.html';"><span></span>Products</button>
-                    <button onclick = "window.location.href='https://discord.gg/c7DJ7RAASz';"><span></span>Join Discord</button>
-                </div>
-            </div>
+<head>
+  <script>
+    (function(w){
+        var k="nudgify",n=w[k]||(w[k]={});
+        n.uuid="cb06d4d6-b227-464a-bb52-642f65e73172";
+        var d=document,s=d.createElement("script");
+        s.src="https://pixel.nudgify.com/pixel.js";
+        s.async=1;
+        s.charset="utf-8";
+        d.getElementsByTagName("head")[0].appendChild(s)
+    })(window)
+</script>
+  <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+  <script>
+    // Connect to the server using Socket.IO
+    const socket = io('https://your-server-url.com');
 
-        </div>
-    </body>
-    <footer>All Rights Reserved ©</footer>
+    // Function to update the visitor count
+    function updateVisitorCount(count) {
+      document.getElementById('visitor-count').textContent = count;
+    }
+
+    // Socket.IO event to receive updated visitor count
+    socket.on('updateCount', count => {
+      updateVisitorCount(count);
+    });
+  </script>
+</head>
+<body>
+  <h1>Live Visitor Count: <span id="visitor-count">0</span></h1>
+
+  <script>
+    // Fetch the initial visitor count from the server
+    fetch('https://your-server-url.com/visitor-count')
+      .then(response => response.json())
+      .then(data => {
+        updateVisitorCount(data.count);
+      });
+  </script>
+</body>
 </html>
